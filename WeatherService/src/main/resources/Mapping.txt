@@ -1,0 +1,7 @@
+﻿Moscow, Москва
+Sankt-Peterburg, Санкт-Петербург
+Simferopol, Симферополь
+Novosibirsk, Новосибирск
+Kazan, Казань
+Ufa, Уфа
+Nizhniy Novgorod, Нижний Новгород
