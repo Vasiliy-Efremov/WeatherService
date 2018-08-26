@@ -22,5 +22,4 @@ public class Translate {
         }
         return nameOnRus;
     }
-
 }

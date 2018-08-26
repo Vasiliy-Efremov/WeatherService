@@ -20,7 +20,7 @@ public class xUtils {
         try (BufferedWriter fileWriter = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath),
                 StandardCharsets.UTF_8))) {
             for (Map.Entry<String, String> pair : map.entrySet()) {
-                fileWriter.write(pair.getKey() + ": " + pair.getValue() + "°C" + "  ");
+                fileWriter.write(pair.getKey() + ": " + pair.getValue() + "  ");
             }
             fileWriter.flush();
         }
@@ -43,5 +43,10 @@ public class xUtils {
         String[] array = result.split("\r\n");
         List<String> list = Arrays.asList(array);
         return list;
+    }
+
+    public static int roundingTemperature(Object temperature) {
+        int result = (int)Math.round(Double.parseDouble(temperature.toString()));
+        return result;
     }
 }

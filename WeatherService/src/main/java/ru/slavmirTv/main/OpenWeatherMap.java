@@ -7,12 +7,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class OpenWeatherMap {
     private static String API_KEY = "70820ff339b635a338700562f555ab73";
-    private Map<String, String> map = new HashMap<>();
+    private Map<String, String> map = new LinkedHashMap<>();
 
     private JSONObject initialiseJsonObjectGroup() throws IOException {
         String citiesId = xUtils.getCitiesId();
@@ -38,7 +38,7 @@ public class OpenWeatherMap {
         return json;
     }
 
-    public void fillTheMapWithWeatherData() throws IOException {
+    private void fillTheMapWithWeatherData() throws IOException {
         JSONArray jsonArray = initialiseJsonArray();
         Translate translate = new Translate();
 
@@ -47,11 +47,10 @@ public class OpenWeatherMap {
             Object city = jsonObject.get("name");
             city = translate.getNameOnRus(city.toString());
             JSONObject nestedJson = jsonObject.getJSONObject("main");
-            Object temperatureMax = nestedJson.get("temp_max");
-            Object temperatureMin = nestedJson.get("temp_min");
-            String temperature = String.valueOf((Double.parseDouble(temperatureMin.toString())
-                    + Double.parseDouble(temperatureMax.toString())) / 2);
-
+            int temperatureMax = xUtils.roundingTemperature(nestedJson.get("temp_max"));
+            int temperatureMin = xUtils.roundingTemperature(nestedJson.get("temp_min"));
+            int finalTemperature = xUtils.roundingTemperature((temperatureMin + temperatureMax) / 2);
+            String temperature = String.valueOf(finalTemperature + "°C");
             map.put(city.toString(), temperature);
         }
     }
