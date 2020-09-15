@@ -29,7 +29,7 @@ public class OpenWeatherMap {
         URL url = new URL(urlString);
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
-            int read;
+            int read;    // Thunder & Lightning!
             while ((read = reader.read()) != -1) {
                 stringBuilder.append((char) read);
             }
