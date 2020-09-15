@@ -11,7 +11,7 @@ public class Main {
             String filePathToWriteWeatherData = xUtils.getPathToWriteData();
             xUtils.writeDataToFile(filePathToWriteWeatherData, map);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // empty
         }
     }
 }
